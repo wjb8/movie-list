@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+import firebase from "firebase";
+import { firestore } from "./firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import MovieList from "./MovieList";
 import Form from "./Form";
 
