@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import MovieList from "./MovieList";
+import Form from "./Form";
 
 const App = () => {
   const fakeMovies = [
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>MOVIE LIST</h1>
+      <Form />
       <MovieList movies={fakeMovies} />
     </div>
   );
