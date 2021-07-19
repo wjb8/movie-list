@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import MovieList from "./MovieList";
 
-function App() {
+const App = () => {
+  const fakeMovies = [
+    {
+      title: "Jaws",
+      year: 1975,
+      rating: 5,
+      description: "good film"
+    },
+    {
+      title: "Passion of the Christ",
+      year: 2456,
+      rating: 1,
+      description: "bad film"
+    }
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>MOVIE LIST</h1>
+      <MovieList movies={fakeMovies} />
     </div>
   );
-}
+};
 
 export default App;
