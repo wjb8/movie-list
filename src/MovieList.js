@@ -4,10 +4,12 @@ import "./MovieList.css";
 
 const MovieList = (props) => {
   const listMovies = props.movies.map((movie) => {
+    const keyGen = movie.title.slice(0, 2) + new Date().getTime();
+
     if (movie) {
       return (
         <MovieListItem
-          key={movie.id}
+          key={keyGen}
           title={movie.title}
           year={movie.year}
           rating={movie.rating}

@@ -10,7 +10,6 @@ const Form = () => {
     description: ""
   });
   const moviesRef = firestore.collection(`movies`);
-  const [movies] = useCollectionData(moviesRef);
 
   const onSubmitMovie = (e) => {
     e.preventDefault();
@@ -33,7 +32,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={onSubmitMovie}>
+    <form className="form" onSubmit={onSubmitMovie}>
       <input
         required
         name="title"
