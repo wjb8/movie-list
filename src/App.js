@@ -51,20 +51,22 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="title">MOVIE LIST</h1>
-      {addMovie && <Form />}
-      {addMovie ? (
-        <button onClick={handleCancel}>Cancel</button>
-      ) : (
-        <button onClick={handleAddMovie}>Add Movie</button>
-      )}
-      <div>
+      <div className="add-movie">
+        {addMovie && <Form />}
+        {addMovie ? (
+          <button onClick={handleCancel}>Cancel</button>
+        ) : (
+          <button onClick={handleAddMovie}>Add Movie</button>
+        )}
+      </div>
+      <div className="sort">
         <br />
         Sort by: <button onClick={sortByTitle}>Title</button>
         <button onClick={sortByYear}>Year</button>
         <button onClick={sortByRating}>Rating</button>
         <button onClick={sortReverse}>↑↓</button>
-        {movies && <MovieList movies={movies} />}
       </div>
+      {movies && <MovieList movies={movies} />}
     </div>
   );
 };

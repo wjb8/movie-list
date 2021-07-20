@@ -57,7 +57,17 @@ button {
   max-width: 100px;
 }
 
+.add-movie {
+  display: inline;
+  margin: auto;
+}
+
 .title {
   display: flex;
   justify-content: center;
+}
+
+.sort {
+  display: inline;
+  margin: auto;
 }

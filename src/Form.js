@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import firebase from "firebase";
-import { firestore, functions } from "./firebase";
-
-const addMovie = functions.httpsCallable("addMovie");
+import { firestore } from "./firebase";
 
 const Form = () => {
   const [movie, setMovie] = useState({
