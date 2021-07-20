@@ -20,7 +20,7 @@ const Form = () => {
 
     console.log(movie);
 
-    addMovie({
+    moviesRef.add({
       ...movie,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });

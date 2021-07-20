@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-import firebase from "firebase";
 import { firestore } from "./firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import MovieList from "./MovieList";
@@ -28,7 +27,9 @@ const App = () => {
   };
 
   const sortByTitle = () => {
-    movies.sort((a, b) => (a.title > b.title ? 1 : -1));
+    movies.sort((a, b) =>
+      a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+    );
     forceUpdate();
   };
 
