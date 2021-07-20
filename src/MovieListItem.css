@@ -1,4 +1,9 @@
 .list-item {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+img {
+  padding-right: 15px;
 }

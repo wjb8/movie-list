@@ -5,10 +5,12 @@ import { firestore } from "./firebase";
 const Form = () => {
   const [movie, setMovie] = useState({
     title: "",
-    year: 0,
-    rating: 1,
-    description: ""
+    year: undefined,
+    rating: undefined,
+    description: "",
+    imageURL: ""
   });
+
   const moviesRef = firestore.collection(`movies`);
 
   const onSubmitMovie = (e) => {
@@ -25,9 +27,10 @@ const Form = () => {
 
     setMovie({
       title: "",
-      year: 0,
-      rating: 1,
-      description: ""
+      year: undefined,
+      rating: undefined,
+      description: "",
+      imageURL: ""
     });
   };
 
@@ -61,7 +64,14 @@ const Form = () => {
         value={movie.description}
         onChange={(e) => setMovie({ ...movie, description: e.target.value })}
       />
-      <button type="submit">Add Movie</button>
+      <input
+        required
+        name="imageURL"
+        placeholder="imageURL"
+        value={movie.imageURL}
+        onChange={(e) => setMovie({ ...movie, imageURL: e.target.value })}
+      />
+      <button type="submit">Submit Movie</button>
     </form>
   );
 };
