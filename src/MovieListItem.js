@@ -30,7 +30,10 @@ const MovieListItem = (props) => {
           <h4>
             {props.title} ({props.year})
           </h4>
-          {props.description} <br /> <i>{props.rating} stars</i>{" "}
+          {props.description} <br />{" "}
+          <i>
+            {props.rating} {props.rating !== "1" ? "stars" : "star"}
+          </i>{" "}
           <button onClick={(e) => editMovie(props.id)}>Edit</button>
           <button onClick={(e) => deleteMovie(props.id)}>Delete</button>
         </div>

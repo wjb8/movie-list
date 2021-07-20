@@ -50,7 +50,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>MOVIE LIST</h1>
+      <h1 className="title">MOVIE LIST</h1>
       {addMovie && <Form />}
       {addMovie ? (
         <button onClick={handleCancel}>Cancel</button>
