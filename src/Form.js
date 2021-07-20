@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import firebase from "firebase";
-import { firestore } from "./firebase";
+import { firestore, functions } from "./firebase";
+
+const addMovie = functions.httpsCallable("addMovie");
 
 const Form = () => {
   const [movie, setMovie] = useState({
     title: "",
-    year: undefined,
-    rating: undefined,
+    year: "",
+    rating: "",
     description: "",
     imageURL: ""
   });
@@ -18,7 +20,7 @@ const Form = () => {
 
     console.log(movie);
 
-    moviesRef.add({
+    addMovie({
       ...movie,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
@@ -27,8 +29,8 @@ const Form = () => {
 
     setMovie({
       title: "",
-      year: undefined,
-      rating: undefined,
+      year: "",
+      rating: "",
       description: "",
       imageURL: ""
     });
@@ -43,6 +45,7 @@ const Form = () => {
         value={movie.title}
         onChange={(e) => setMovie({ ...movie, title: e.target.value })}
       />
+      <br />
       <input
         required
         name="year"
@@ -50,6 +53,7 @@ const Form = () => {
         value={movie.year}
         onChange={(e) => setMovie({ ...movie, year: e.target.value })}
       />
+      <br />
       <input
         required
         name="rating"
@@ -57,6 +61,7 @@ const Form = () => {
         value={movie.rating}
         onChange={(e) => setMovie({ ...movie, rating: e.target.value })}
       />
+      <br />
       <input
         required
         name="description"
@@ -64,6 +69,7 @@ const Form = () => {
         value={movie.description}
         onChange={(e) => setMovie({ ...movie, description: e.target.value })}
       />
+      <br />
       <input
         required
         name="imageURL"
@@ -71,6 +77,7 @@ const Form = () => {
         value={movie.imageURL}
         onChange={(e) => setMovie({ ...movie, imageURL: e.target.value })}
       />
+      <br />
       <button type="submit">Submit Movie</button>
     </form>
   );
