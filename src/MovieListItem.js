@@ -1,18 +1,22 @@
-import React from "react";
-import firebase from "firebase";
+import React, { useState } from "react";
 import { firestore } from "./firebase";
-import Form from "./Form";
+import Edit from "./Edit";
 import "./MovieListItem.css";
 
 const MovieListItem = (props) => {
+  const [editForm, setEditForm] = useState(false);
+  const [movie, setMovie] = useState({
+    title: props.title,
+    year: props.year,
+    rating: props.rating,
+    description: props.description,
+    imageURL: props.imageURL
+  });
+
   const moviesRef = firestore.collection(`movies`);
 
-  const editMovie = (id) => {
-    alert("edit");
-  };
-
   const deleteMovie = (id) => {
-    moviesRef.doc(id).delete();
+    moviesRef.doc(id).delete().then(alert("Movie deleted from collection."));
   };
 
   return (
@@ -34,9 +38,23 @@ const MovieListItem = (props) => {
           <i>
             {props.rating} {props.rating !== "1" ? "stars" : "star"}
           </i>{" "}
-          <button onClick={(e) => editMovie(props.id)}>Edit</button>
+          <button
+            onClick={(e) => (editForm ? setEditForm(false) : setEditForm(true))}
+          >
+            Edit
+          </button>
           <button onClick={(e) => deleteMovie(props.id)}>Delete</button>
         </div>
+        {editForm && (
+          <Edit
+            id={props.id}
+            title={props.title}
+            year={props.year}
+            rating={props.rating}
+            description={props.description}
+            imageURL={props.imageURL}
+          />
+        )}
       </div>
     </>
   );

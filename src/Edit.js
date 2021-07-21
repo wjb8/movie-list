@@ -1,82 +1,84 @@
 import React, { useState } from "react";
-import firebase from "firebase";
 import { firestore } from "./firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import "./Edit.css";
 
-const Form = () => {
+const Edit = (props) => {
   const [movie, setMovie] = useState({
-    title: "",
-    year: "",
-    rating: "",
-    description: "",
-    imageURL: ""
+    title: props.title,
+    year: props.year,
+    rating: props.rating,
+    description: props.description,
+    imageURL: props.imageURL
   });
 
   const moviesRef = firestore.collection(`movies`);
 
-  const onSubmitMovie = (e) => {
+  const updateMovie = (e) => {
     e.preventDefault();
 
-    moviesRef.add({
-      ...movie,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-
-    alert("Movie added to database: " + movie.title);
-
-    setMovie({
-      title: "",
-      year: "",
-      rating: "",
-      description: "",
-      imageURL: ""
-    });
+    moviesRef
+      .doc(props.id)
+      .update({
+        title: movie.title,
+        year: movie.year,
+        rating: movie.rating,
+        description: movie.description,
+        imageURL: movie.imageURL
+      })
+      .then(alert("Movie updated!"));
   };
 
   return (
-    <form className="form" onSubmit={onSubmitMovie}>
+    <form className="form" onSubmit={updateMovie}>
+      Title:{" "}
       <input
-        required
+        type="text"
         name="title"
-        placeholder="title"
+        placeholder={props.title}
         value={movie.title}
         onChange={(e) => setMovie({ ...movie, title: e.target.value })}
       />
       <br />
+      Year:{" "}
       <input
-        required
+        type="text"
         name="year"
-        placeholder="year"
+        placeholder={props.year}
         value={movie.year}
         onChange={(e) => setMovie({ ...movie, year: e.target.value })}
       />
       <br />
+      Rating:{"  "}
       <input
-        required
+        type="text"
         name="rating"
-        placeholder="rating"
+        placeholder={props.rating}
         value={movie.rating}
         onChange={(e) => setMovie({ ...movie, rating: e.target.value })}
       />
       <br />
+      Description:{" "}
       <input
-        required
+        type="text"
         name="description"
-        placeholder="description"
+        placeholder={props.description}
         value={movie.description}
         onChange={(e) => setMovie({ ...movie, description: e.target.value })}
       />
       <br />
+      Image URL:{" "}
       <input
-        required
+        type="text"
         name="imageURL"
-        placeholder="imageURL"
+        placeholder={props.imageURL}
         value={movie.imageURL}
         onChange={(e) => setMovie({ ...movie, imageURL: e.target.value })}
       />
       <br />
-      <button type="submit">Submit Movie</button>
+      <button type="submit">Update Movie</button>
     </form>
   );
 };
 
-export default Form;
+export default Edit;

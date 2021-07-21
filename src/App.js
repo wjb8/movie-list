@@ -6,14 +6,17 @@ import MovieList from "./MovieList";
 import Form from "./Form";
 
 const App = () => {
+  document.title = `Movie List`;
+
   const [addMovie, setAddMovie] = useState(false);
 
   const moviesRef = firestore.collection(`movies`);
   const [movies] = useCollectionData(moviesRef, { idField: "id" });
 
+  // Function to update state to force a rerender of the MovieList
   const useForceUpdate = () => {
     const [value, setValue] = useState(0);
-    return () => setValue((value) => value + 1); // update state to force a rerender
+    return () => setValue((value) => value + 1);
   };
 
   const forceUpdate = useForceUpdate();
