@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Movie List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Remember to `npm install` to install dependecies.
 
 ## Available Scripts
 
