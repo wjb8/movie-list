@@ -5,13 +5,6 @@ import "./MovieListItem.css";
 
 const MovieListItem = (props) => {
   const [editForm, setEditForm] = useState(false);
-  const [movie, setMovie] = useState({
-    title: props.title,
-    year: props.year,
-    rating: props.rating,
-    description: props.description,
-    imageURL: props.imageURL
-  });
 
   const moviesRef = firestore.collection(`movies`);
 

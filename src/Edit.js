@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { firestore } from "./firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import "./Edit.css";
 
 const Edit = (props) => {
