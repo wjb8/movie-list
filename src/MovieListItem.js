@@ -34,7 +34,7 @@ const MovieListItem = (props) => {
           <button
             onClick={(e) => (editForm ? setEditForm(false) : setEditForm(true))}
           >
-            Edit
+            {editForm ? "Hide Edit" : "Show Edit"}
           </button>
           <button onClick={(e) => deleteMovie(props.id)}>Delete</button>
         </div>
