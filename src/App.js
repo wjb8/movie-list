@@ -13,7 +13,7 @@ const App = () => {
   const moviesRef = firestore.collection(`movies`);
   const [movies] = useCollectionData(moviesRef, { idField: "id" });
 
-  // Function to update state to force a rerender of the MovieList
+  // Custom hook to update state to force a rerender of the MovieList
   const useForceUpdate = () => {
     const [value, setValue] = useState(0);
     return () => setValue((value) => value + 1);
